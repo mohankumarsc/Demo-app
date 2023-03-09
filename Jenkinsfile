@@ -1,7 +1,8 @@
 pipeline{
     
     agent any 
-    
+     def mavenHome =  tool name: "maven" , type: "maven"
+                    def mavenCMD = "${mavenHome}/bin/mvn"
     stages {
         
         stage('Git Checkout'){
@@ -20,8 +21,7 @@ pipeline{
             steps{
                 
                 script{
-                    def mavenHome =  tool name: "maven" , type: "maven"
-                    def mavenCMD = "${mavenHome}/bin/mvn"
+                   
           
                     sh "${mavenCMD} test"
                     
@@ -36,8 +36,7 @@ pipeline{
                 
                 script{
                     
-                    def mavenHome =  tool name: "maven" , type: "maven"
-                    def mavenCMD = "${mavenHome}/bin/mvn"
+                    
           
                     sh "${mavenCMD} clean package"
                     
